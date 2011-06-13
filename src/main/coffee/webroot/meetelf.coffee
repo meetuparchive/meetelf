@@ -43,6 +43,7 @@ $(() ->
     img.src = "tiles/#{name}.png"
     img
   elfimg = setupimg("elf")
+  groupimg = setupimg("group")
   for name of tiles
     tiles[name].img = setupimg(name)
   pick = (x,y) ->
@@ -70,6 +71,8 @@ $(() ->
 
     ctx.translate(0*blockW, 9*blockH)
     ctx.drawImage(elfimg, 0, 0, blockW, blockH)
+    ctx.translate(2*blockW, 0*blockH)
+    ctx.drawImage(groupimg, 0, 0, 3*blockW, blockH)
     ctx.restore()
 
   paint()
