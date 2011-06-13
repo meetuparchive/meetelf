@@ -38,10 +38,13 @@ $(() ->
     dragon:
       chance: (x,y) -> 0
 
-  for name of tiles
+  setupimg = (name) ->
     img = new Image()
     img.src = "tiles/#{name}.png"
-    tiles[name]["img"] = img
+    img
+  elfimg = setupimg("elf")
+  for name of tiles
+    tiles[name].img = setupimg(name)
   pick = (x,y) ->
     die = []
     for name of tiles
@@ -64,6 +67,10 @@ $(() ->
         ctx.translate(x*blockW, y*blockH)
         ctx.drawImage(tile.img, 0, 0, blockW, blockH)
         ctx.restore()
+
+    ctx.translate(0*blockW, 9*blockH)
+    ctx.drawImage(elfimg, 0, 0, blockW, blockH)
+    ctx.restore()
 
   paint()
 )
