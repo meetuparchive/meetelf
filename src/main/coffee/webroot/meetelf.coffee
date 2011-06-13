@@ -33,6 +33,8 @@ $(() ->
       chance: (x,y) -> 
         if y <2 then 1
         else 0
+    meetup:
+      chance: (x,y) -> 0
 
   for name of tiles
     img = new Image()
@@ -44,9 +46,11 @@ $(() ->
       tile = tiles[name]
       for i in [0...tile.chance(x,y)]
         die.push(tile)
-    console.log(die)
     die[Math.floor(Math.random()*die.length)]
   grid = (([x,y,pick(x,y)] for x in [0...blocks]) for y in [0...blocks])
+  assign = (x,y,tile) -> grid[y][x] = [x,y,tile]
+  assign(8,6,tiles.meetup)
+
   paint = () ->
     canvas = board[0]
     ctx = canvas.getContext("2d")
