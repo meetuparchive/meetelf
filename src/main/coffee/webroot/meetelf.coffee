@@ -115,6 +115,40 @@ $(() ->
       $("#score").text(score*100)
       setTimeout(turn, 1000)
 
+  calcdirs = () ->
+    dirs = [
+      [X+1,Y]
+      [X-1,Y]
+      [X,Y+1]
+      [X,Y-1]
+    ]
+    dirs = [[x,y,lookup(x,y)] for [x,y] in dirs when
+            x > 0 && x < blocks && y > 0 && y < blocks]
+    
+
+  metup = false
+  decide = (dirs) ->
+    rank(dir) ->
+      r = 0
+      if not metup
+        r += 5 if dir.meetup
+      else
+        r += 5 if dir.dragon
+      switch dir.next
+        when "field" then r+= 2
+        when "crop" then r+= 5
+        when "wood" then r -= 2
+        when "water" then r -= 2
+        when "mountain" then r -= 1
+        when "volcano" then r -= 3
+        when "meetup" then r += 10
+        when "dragon" then r += 10
+
+    dirs.sort((a, b,) -> rank(a) - rank(b))
+    dirs[0]
+      
+    
+
   paint()
   setTimeout(turn, 1000)
 )
