@@ -42,8 +42,6 @@ $(() ->
     img = new Image()
     img.src = "tiles/#{name}.png"
     img
-  elfimg = setupimg("elf")
-  groupimg = setupimg("group")
   for name of tiles
     tiles[name].img = setupimg(name)
   pick = (x,y) ->
@@ -58,22 +56,37 @@ $(() ->
   assign(8,6,tiles.meetup)
   assign(2,0,tiles.dragon)
 
-  paint = () ->
-    canvas = board[0]
-    ctx = canvas.getContext("2d")
+  canvas = board[0]
+  ctx = canvas.getContext("2d")
+  xblock = (x, y, f) ->
+    ctx.save()
+    ctx.translate(x*blockW, y*blockH)
+    f()
+    ctx.restore()
 
+  solo =
+    img: setupimg("elf")
+    draw: (x, y) ->
+      xblock(x, y, () ->
+        ctx.drawImage(solo.img, 0, 0, blockW, blockH) 
+      )
+  group =
+    img: setupimg("group")
+    draw: (x,y) ->
+      xblock(x-1, y, () ->
+        ctx.drawImage(group.img, 0, 0, 3*blockW, blockH)
+      )
+
+  player = solo
+
+  paint = () ->
     for row in grid
       for [x,y,tile] in row
-        ctx.save()
-        ctx.translate(x*blockW, y*blockH)
-        ctx.drawImage(tile.img, 0, 0, blockW, blockH)
-        ctx.restore()
+        xblock(x, y, () ->
+          ctx.drawImage(tile.img, 0, 0, blockW, blockH)
+        )
 
-    ctx.translate(0*blockW, 9*blockH)
-    ctx.drawImage(elfimg, 0, 0, blockW, blockH)
-    ctx.translate(2*blockW, 0*blockH)
-    ctx.drawImage(groupimg, 0, 0, 3*blockW, blockH)
-    ctx.restore()
+    player.draw(0,9)
 
   paint()
 )
