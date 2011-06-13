@@ -6,20 +6,46 @@ $(() ->
   blockW = width / blocks
   blockH = height / blocks
   
-  tiles = {
-    field: { }
-    wood:  { }
-    crops: { }
-    mountain:  { }
-    water: { }
-    volcano:  { }
-  }
+  tiles =
+    field:
+      chance: (x,y) -> 
+        if y > 7 then 5
+        else if y > 2 then 3
+        else 1
+    wood:
+      chance: (x,y) -> 
+        if y > 3 and y < 9 then 3
+        else 0
+    crops:
+      chance: (x,y) -> 
+        if y > 4 then 1
+        else 0
+    water:
+      chance: (x,y) -> 
+        if y > 2 and y < 5 then 10
+        else 0
+    mountain:
+      chance: (x,y) -> 
+        if y < 2 then 5
+        if y < 8 then 1
+        else 0
+    volcano:
+      chance: (x,y) -> 
+        if y <2 then 1
+        else 0
+
   for name of tiles
-      img = new Image()
-      img.src = "tiles/#{name}.png"
-      tiles[name]["img"] = img
-  tilesAry = (tiles[k] for k of tiles)
-  pick = (x,y) -> tilesAry[Math.floor(Math.random()*tilesAry.length)]
+    img = new Image()
+    img.src = "tiles/#{name}.png"
+    tiles[name]["img"] = img
+  pick = (x,y) ->
+    die = []
+    for name of tiles
+      tile = tiles[name]
+      for i in [0...tile.chance(x,y)]
+        die.push(tile)
+    console.log(die)
+    die[Math.floor(Math.random()*die.length)]
   grid = (([x,y,pick(x,y)] for x in [0...blocks]) for y in [0...blocks])
   paint = () ->
     canvas = board[0]
