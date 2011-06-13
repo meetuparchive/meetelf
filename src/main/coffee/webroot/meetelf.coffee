@@ -7,15 +7,18 @@ $(() ->
   blockH = height / blocks
   
   tiles = {
-    field: { img: "f" }
-    wood:  { img: "w" }
-    brush: { img: "b" }
-    rock:  { img: "r" }
-    water: { img: "w" }
-    fire:  { img: "!" }
+    field: { }
+    wood:  { }
+    crops: { }
+    mountain:  { }
+    water: { }
+    volcano:  { }
   }
+  for name of tiles
+      img = new Image()
+      img.src = "tiles/#{name}.png"
+      tiles[name]["img"] = img
   tilesAry = (tiles[k] for k of tiles)
-  console.log(tilesAry)
   pick = (x,y) -> tilesAry[Math.floor(Math.random()*tilesAry.length)]
   grid = (([x,y,pick(x,y)] for x in [0...blocks]) for y in [0...blocks])
   paint = () ->
@@ -26,7 +29,7 @@ $(() ->
       for [x,y,tile] in row
         ctx.save()
         ctx.translate(x*blockW, y*blockH)
-        ctx.fillText(tile.img, blockW/2, blockH/2)
+        ctx.drawImage(tile.img, 0, 0, blockW, blockH)
         ctx.restore()
 
   paint()
