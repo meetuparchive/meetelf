@@ -65,6 +65,7 @@ $(() ->
     die[Math.floor(Math.random()*die.length)]
   grid = (([x,y,pick(x,y)] for x in [0...blocks]) for y in [0...blocks])
   assign = (x,y,tile) -> grid[y][x] = [x,y,tile]
+  lookup = (x,y) -> grid[y][x][2]
   assign(8,6,tiles.meetup)
   assign(2,0,tiles.dragon)
 
@@ -109,7 +110,7 @@ $(() ->
     X += 1
     Y -= 1
     if X < blocks
-      grid[Y][X][2].enter()
+      lookup(X,Y).enter()
       paint()
       $("#score").text(score*100)
       setTimeout(turn, 1000)
