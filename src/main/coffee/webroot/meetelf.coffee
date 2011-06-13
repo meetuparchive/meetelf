@@ -35,6 +35,8 @@ $(() ->
         else 0
     meetup:
       chance: (x,y) -> 0
+    dragon:
+      chance: (x,y) -> 0
 
   for name of tiles
     img = new Image()
@@ -50,6 +52,7 @@ $(() ->
   grid = (([x,y,pick(x,y)] for x in [0...blocks]) for y in [0...blocks])
   assign = (x,y,tile) -> grid[y][x] = [x,y,tile]
   assign(8,6,tiles.meetup)
+  assign(2,0,tiles.dragon)
 
   paint = () ->
     canvas = board[0]
