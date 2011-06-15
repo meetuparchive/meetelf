@@ -1,28 +1,30 @@
 $(() ->
   stub = '''
-function(dir, metup) {
-    var r = 0;
-    if (!metup)
-        r += dir.meetup * 3;
-    else
-        r += dir.dragon * 3;
-    if (dir.next == "field")
-        r+= 2;
-    else if (dir.next == "crop")
-        r+= 5;
-    else if (dir.next == "wood")
-        r -= 2;
-    else if (dir.next == "water")
-        r -= 2;
-    else if (dir.next == "mountain")
-        r -= 1;
-    else if (dir.next == "volcano")
-        r -= 3;
-    else if (dir.next == "meetup" && !metup)
-        r += 10
-    else if (dir.next == "dragon")
-        r += 10
-    return r
+function(dir,    // direction to rank
+         metup   // has been to meetup?
+        ) {
+  var r = 0; // the ranking
+  if (!teamedup)
+      r += dir.meetup * 3;
+  else
+      r += dir.dragon * 3;
+  if (dir.next == "field")
+      r+= 2;
+  else if (dir.next == "crop")
+      r+= 5;
+  else if (dir.next == "wood")
+      r -= 2;
+  else if (dir.next == "water")
+      r -= 2;
+  else if (dir.next == "mountain")
+      r -= 1;
+  else if (dir.next == "volcano")
+      r -= 3;
+  else if (dir.next == "meetup" && !metup)
+      r += 10
+  else if (dir.next == "dragon")
+      r += 10
+  return r
 }
 '''
   $("#code textarea").val(stub)
