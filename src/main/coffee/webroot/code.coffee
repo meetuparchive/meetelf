@@ -8,9 +8,9 @@ function(
 ) {
   var r = 0; // the ranking
   if (!bros)
-      r += 0;
+      r += meetup*1;
   else
-      r += 0;
+      r += dragon*1;
   if (land == "field")
       r+= 0;
   else if (land == "crops")

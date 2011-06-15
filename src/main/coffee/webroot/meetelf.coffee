@@ -145,7 +145,12 @@ window.play = () ->
         ctx.font = "50px monospace"
         ctx.fillStyle = "white"
         ctx.textAlign = "center"
-        ctx.fillText((if won then "YOU WON!" else "GAME OVER"), width/2, height/3)
+        message =
+          if won
+            if score > 180 then "YOU WIN!"
+            else "NOT BAD"
+          else "GAME OVER"
+        ctx.fillText(message, width/2, height/3)
         ctx.fillText(score*100, width/2, 2*height/3)
         player.draw(X, Y)
       ,1000)
