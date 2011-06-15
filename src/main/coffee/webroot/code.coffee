@@ -33,10 +33,13 @@ function(
   $("#code textarea").val(stub)
   $("#code input").click( (event) ->
     event.preventDefault()
-    eval("window.rank = " + $("#code textarea").val())
-    $("#code").toggle()
-    $("#play").toggle()
-    window.play()
+    try
+      eval("window.rank = " + $("#code textarea").val())
+      $("#code").toggle()
+      $("#play").toggle()
+      window.play()
+    catch e
+      alert(e)
   )
   $("#edit").click( (event) ->
     event.preventDefault()
