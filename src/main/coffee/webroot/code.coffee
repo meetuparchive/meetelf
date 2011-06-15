@@ -1,28 +1,31 @@
 $(() ->
   stub = '''
-function(dir,    // direction to rank
-         metup   // has been to meetup?
-        ) {
+function(
+  land,    // what's in the block (str)
+  meetup,  // dist to/from meetup (num)
+  dragon,  // dist to/from dragon (num)
+  bros     // has been to meetup? (bool)
+) {
   var r = 0; // the ranking
-  if (!teamedup)
-      r += dir.meetup * 3;
+  if (!bros)
+      r += meetup * 2
   else
-      r += dir.dragon * 3;
-  if (dir.next == "field")
+      r += dragon * 4;
+  if (land == "field")
       r+= 2;
-  else if (dir.next == "crop")
-      r+= 5;
-  else if (dir.next == "wood")
+  else if (land == "crops")
+      r+= 4;
+  else if (land == "wood")
       r -= 2;
-  else if (dir.next == "water")
+  else if (land == "water")
       r -= 2;
-  else if (dir.next == "mountain")
+  else if (land == "mountain")
       r -= 1;
-  else if (dir.next == "volcano")
+  else if (land == "volcano")
       r -= 3;
-  else if (dir.next == "meetup" && !metup)
+  else if (land == "meetup" && !bros)
       r += 10
-  else if (dir.next == "dragon")
+  else if (land == "dragon")
       r += 10
   return r
 }
@@ -33,7 +36,7 @@ function(dir,    // direction to rank
     eval("window.rank = " + $("#code textarea").val())
     $("#code").toggle()
     $("#play").toggle()
-    setTimeout(window.play, 1000)
+    window.play()
   )
   $("#edit").click( (event) ->
     event.preventDefault()

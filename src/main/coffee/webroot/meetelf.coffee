@@ -127,11 +127,9 @@ window.play = () ->
         ways.push([X+x,Y+y]) if x != 0 || y != 0
     ingrid = (n) -> n >= 0 && n < blocks
     valid = ([x, y] for [x,y] in ways when ingrid(x) && ingrid(y))
-    ranked = ([x, y, window.rank(
-      next: lookup(x,y).name
-      meetup: toMeetup(x,y)
-      dragon: toDragon(x,y)
-    , player == group)] for [x, y] in valid)
+    ranked = ([x, y,
+      window.rank(lookup(x,y).name, toMeetup(x,y), toDragon(x,y), player == group)
+      ] for [x, y] in valid)
     ranked.sort((a,b) -> b[2] - a[2])
     [x,y,r] = ranked[0]
     X = x
@@ -140,7 +138,7 @@ window.play = () ->
     paint()
     $("#score").text(score*100)
     turns++
-    if not won and turns < 25
+    if not won and turns < 20
       setTimeout(turn, 1000)
 
   paint()
