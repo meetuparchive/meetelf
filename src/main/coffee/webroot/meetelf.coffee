@@ -138,7 +138,18 @@ window.play = () ->
     paint()
     $("#score").text(score*100)
     turns++
-    if not won and turns < 20
+    if won or turns > 20
+      setTimeout(() ->
+        ctx.fillStyle = "black"
+        ctx.fillRect(0, 0, width, height)
+        ctx.font = "50px monospace"
+        ctx.fillStyle = "white"
+        ctx.textAlign = "center"
+        ctx.fillText((if won then "YOU WON!" else "GAME OVER"), width/2, height/3)
+        ctx.fillText(score*100, width/2, 2*height/3)
+        player.draw(X, Y)
+      ,1000)
+    else
       setTimeout(turn, 1000)
 
   paint()

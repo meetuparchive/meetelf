@@ -8,26 +8,26 @@ function(
 ) {
   var r = 0; // the ranking
   if (!bros)
-      r += meetup * 2
+      r += 0;
   else
-      r += dragon * 4;
+      r += 0;
   if (land == "field")
-      r+= 2;
+      r+= 0;
   else if (land == "crops")
-      r+= 4;
+      r+= 0;
   else if (land == "wood")
-      r -= 2;
+      r += 0;
   else if (land == "water")
-      r -= 2;
+      r += 0;
   else if (land == "mountain")
-      r -= 1;
+      r += 0;
   else if (land == "volcano")
-      r -= 3;
+      r += 0;
   else if (land == "meetup" && !bros)
-      r += 10
+      r += 0;
   else if (land == "dragon")
-      r += 10
-  return r
+      r += 0;
+  return r;
 }
 '''
   $("#code textarea").val(stub)
