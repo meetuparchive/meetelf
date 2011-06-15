@@ -115,9 +115,9 @@ $(() ->
   rank = (dir, metup) ->
     r = 0
     if not metup
-      r += 5 if dir.meetup
+      r += dir.meetup * 5
     else
-      r += 5 if dir.dragon
+      r += dir.dragon * 5
     switch dir.next
       when "field" then r+= 2
       when "crop" then r+= 5
@@ -132,7 +132,7 @@ $(() ->
   sqrs = (ax, ay, cx, cy) ->
     (ax - cx)*(ax - cx) + (ay - cy)*(ay - cy)
   toPoint = (x, y, cx, cy) ->
-    sqrs(x, y, X, Y) > sqrs(x, y, cx, cy)
+    Math.sqrt(sqrs(x, y, X, Y)) - Math.sqrt(sqrs(x, y, cx, cy))
   toMeetup = (cx, cy) -> toPoint(8, 6, cx, cy)
   toDragon = (cx, cy) -> toPoint(2, 0, cx, cy)
 
