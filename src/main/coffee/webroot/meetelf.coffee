@@ -82,6 +82,7 @@ window.play = () ->
       enter: () ->
         player.score(50)
         player = group
+        assign(8,6,tiles.field)
     dragon:
       chance: (x,y) -> 0
       enter: () ->
@@ -128,7 +129,8 @@ window.play = () ->
     ingrid = (n) -> n >= 0 && n < blocks
     valid = ([x, y] for [x,y] in ways when ingrid(x) && ingrid(y))
     ranked = ([x, y,
-      window.rank(lookup(x,y).name, toMeetup(x,y), toDragon(x,y), player == group)
+      window.rank(lookup(x,y).name,
+        if player == solo then toMeetup(x,y) else toDragon(x,y))
       ] for [x, y] in valid)
     ranked.sort((a,b) -> b[2] - a[2])
     [x,y,r] = ranked[0]
