@@ -5,6 +5,7 @@ function(
   togoal  // dist to/from next goal
 ) {
   var r = 0; // the ranking
+
   r += togoal*1;
 
   if (land == "field")
