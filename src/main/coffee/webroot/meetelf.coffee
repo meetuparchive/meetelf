@@ -121,7 +121,9 @@ window.play = () ->
   toDragon = (cx, cy) -> toPoint(2, 0, cx, cy)
 
   turns = 0
+  stopped = false
   turn = () ->
+    if stopped then return
     ways = []
     for x in [-1..1]
       for y in [-1..1]
@@ -162,3 +164,9 @@ window.play = () ->
   paint()
   paint()
   setTimeout(turn, 1000)
+  $("#edit").unbind("click").click( (event) ->
+    event.preventDefault()
+    stopped = true
+    $("#code").toggle()
+    $("#play").toggle()
+  )

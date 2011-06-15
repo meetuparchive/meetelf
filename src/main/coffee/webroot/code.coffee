@@ -37,9 +37,4 @@ function(
     catch e
       alert(e)
   )
-  $("#edit").click( (event) ->
-    event.preventDefault()
-    $("#code").toggle()
-    $("#play").toggle()
-  )
 )
