@@ -3,4 +3,4 @@ libraryDependencies ++= Seq(
   "net.databinder" %% "unfiltered-jetty" % "0.3.3"
 )
 
-coffeeTarget <<= (resourceManaged in Compile) { d => d }
+coffeeTarget <<= (classDirectory in Compile) { d => d }
