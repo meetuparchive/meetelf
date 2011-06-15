@@ -153,4 +153,5 @@ window.play = () ->
       setTimeout(turn, 1000)
 
   paint()
+  paint()
   setTimeout(turn, 1000)
