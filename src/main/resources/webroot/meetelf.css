@@ -2,3 +2,17 @@
     width: 500px;
     margin: 0 auto;
 }
+#code textarea {
+    width: 500px;
+    height: 500px;
+}
+#play {
+    display: none;
+}
+body * {
+    font-family: monospace;
+}
+
+#score {
+    font-size: 20px;
+}

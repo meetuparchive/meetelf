@@ -1,4 +1,4 @@
-$(() ->
+window.play = () ->
   board = $("#board")
   width = board.width()
   height = board.height()
@@ -112,23 +112,6 @@ $(() ->
         )
     player.draw(X, Y)
 
-  rank = (dir, metup) ->
-    r = 0
-    if not metup
-      r += dir.meetup * 5
-    else
-      r += dir.dragon * 5
-    switch dir.next
-      when "field" then r+= 2
-      when "crop" then r+= 5
-      when "wood" then r -= 2
-      when "water" then r -= 2
-      when "mountain" then r -= 1
-      when "volcano" then r -= 3
-      when "meetup" and not metup then r += 10
-      when "dragon" then r += 10
-    r
-
   sqrs = (ax, ay, cx, cy) ->
     (ax - cx)*(ax - cx) + (ay - cy)*(ay - cy)
   toPoint = (x, y, cx, cy) ->
@@ -136,6 +119,7 @@ $(() ->
   toMeetup = (cx, cy) -> toPoint(8, 6, cx, cy)
   toDragon = (cx, cy) -> toPoint(2, 0, cx, cy)
 
+  turns = 0
   turn = () ->
     ways = []
     for x in [-1..1]
@@ -143,7 +127,7 @@ $(() ->
         ways.push([X+x,Y+y]) if x != 0 || y != 0
     ingrid = (n) -> n >= 0 && n < blocks
     valid = ([x, y] for [x,y] in ways when ingrid(x) && ingrid(y))
-    ranked = ([x, y, rank(
+    ranked = ([x, y, window.rank(
       next: lookup(x,y).name
       meetup: toMeetup(x,y)
       dragon: toDragon(x,y)
@@ -155,8 +139,9 @@ $(() ->
     lookup(X,Y).enter()
     paint()
     $("#score").text(score*100)
-    if not won then setTimeout(turn, 1000)
+    turns++
+    if not won and turns < 25
+      setTimeout(turn, 1000)
 
   paint()
   setTimeout(turn, 1000)
-)

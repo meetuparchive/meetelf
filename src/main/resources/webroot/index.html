@@ -4,10 +4,24 @@
 </head>
 <body>
 <div id="content">
-   <canvas id="board" width="500" height="500"></canvas>
-   <div id="score">0</div>
+  <div id="code">
+    <textarea></textarea>
+    <div><input type="submit" value="PLAY"/></div>
+  </div>
+  <div id="play">
+    <canvas id="board" width="500" height="500"></canvas>
+    <div id="score">0</div>
+    <div>
+      <input type="submit" id="edit" value="RE-EDIT"/>
+      -OR-
+      <input type="submit" id="submit" value="SUBMIT"/>
+      NAME:
+      <input type="text" />
+    </div>
+  </div>
 </div>
 <script src="jquery.min.js"></script>
 <script src="meetelf.js"></script>
+<script src="code.js"></script>
 </body>
 </html>
