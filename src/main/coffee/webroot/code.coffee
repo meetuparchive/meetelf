@@ -4,27 +4,18 @@ function(
   land,   // what's in the block (str)
   togoal  // dist to/from next goal
 ) {
-  var r = 0; // the ranking
+  var landfactor = {
+    field: 0,
+    crops: 0,
+    wood: 0,
+    water: 0,
+    mountain: 0,
+    volcano: 0,
+    meetup: 0,
+    dragon: 0
+  }
 
-  r += togoal*1;
-
-  if (land == "field")
-      r+= 0;
-  else if (land == "crops")
-      r+= 0;
-  else if (land == "wood")
-      r += 0;
-  else if (land == "water")
-      r += 0;
-  else if (land == "mountain")
-      r += 0;
-  else if (land == "volcano")
-      r += 0;
-  else if (land == "meetup")
-      r += 0;
-  else if (land == "dragon")
-      r += 0;
-  return r;
+  return landfactor[land] + togoal*1;
 }
 '''
   $("#code textarea").val(stub)
