@@ -1,0 +1,44 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="meetelf.css" />
+</head>
+<body>
+<div id="content">
+  <div id="code">
+    <textarea></textarea>
+<pre id="help">
+  field      +400
+  crops     +1000
+  meetup    +5000
+  dragon   +10000
+  wood       -200
+  mountain   -400
+  water     -1000
+  volcano   -2000
+
+
+  "dist" is # blocks
+  the direction would be
+  closer (+) or further (-)
+  to next goal.
+
+
+
+  HINT: Meetups make hard
+        stuff easier!!
+</pre>
+    <div class="buttons"><input type="submit" value="PLAY"/></div>
+  </div>
+  <div id="play">
+    <canvas id="board" width="500" height="500"></canvas>
+    <div id="score">0</div>
+    <div>
+      <input type="submit" id="edit" value="RE-EDIT"/>
+    </div>
+  </div>
+</div>
+<script src="jquery.min.js"></script>
+<script src="meetelf.js"></script>
+<script src="code.js"></script>
+</body>
+</html>

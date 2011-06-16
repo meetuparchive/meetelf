@@ -1,0 +1,26 @@
+#content {
+    width: 500px;
+    margin: 0 auto;
+}
+#code textarea {
+    width: 300px;
+    height: 490px;
+    float: left
+}
+#help {
+    font-size: 15px;
+}
+.buttons {
+    clear: left;
+}
+#play {
+    display: none;
+}
+body * {
+    font-family: monospace;
+}
+
+#score {
+    font-size: 20px;
+    float: right
+}
